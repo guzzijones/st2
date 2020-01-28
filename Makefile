@@ -440,7 +440,7 @@ requirements: virtualenv .sdist-requirements install-runners
 	@echo
 	# Make sure we use latest version of pip which is 19
 	$(VIRTUALENV_DIR)/bin/pip --version
-	$(VIRTUALENV_DIR)/bin/pip install --upgrade "pip>=19.0,<20.0"
+	$(VIRTUALENV_DIR)/bin/pip install --upgrade "pip>=19.0,<20.0.5"
 	$(VIRTUALENV_DIR)/bin/pip install --upgrade "virtualenv==16.6.0" # Required for packs.install in dev envs
 
 	# Generate all requirements to support current CI pipeline.
@@ -456,6 +456,16 @@ requirements: virtualenv .sdist-requirements install-runners
 
 	# Fix for Travis CI race
 	$(VIRTUALENV_DIR)/bin/pip install "six==1.12.0"
+
+	# Fix for setuptools
+	$(VIRTUALENV_DIR)/bin/pip install "setuptools-scm" 
+	$(VIRTUALENV_DIR)/bin/pip install "setuptools" --no-binary=:all:
+	
+	# Fix for pytest-runner
+	$(VIRTUALENV_DIR)/bin/pip install "pytest-runner" 
+	
+	#fix for pbr
+	$(VIRTUALENV_DIR)/bin/pip install "pbr" 
 
 	# Fix for Travis CI caching issue
 	if [[ "$(TRAVIS_EVENT_TYPE)" != "" ]]; then\

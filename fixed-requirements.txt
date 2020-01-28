@@ -1,5 +1,6 @@
 # Packages versions fixed for the whole st2 stack
 # Note: greenlet is used by eventlet
+pytest_runner
 greenlet==0.4.15
 # Note: 0.20.0 removed select.poll() on which some of our code and libraries we
 # depend on rely
