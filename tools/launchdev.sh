@@ -254,7 +254,7 @@ function st2start(){
         echo '  using gunicorn to run st2-api...'
         export ST2_CONFIG_PATH=${ST2_CONF}
         screen -L -c tools/screen-configs/st2api.conf -d -m -S st2-api ${VIRTUALENV}/bin/gunicorn \
-            st2api.wsgi:application -k eventlet -b "$BINDING_ADDRESS:9101" --workers 1
+            st2api.wsgi:application -k eventlet -b "$BINDING_ADDRESS:9101" --workers 1 --timeout 90
     else
         screen -L -c tools/screen-configs/st2api.conf -d -m -S st2-api ${VIRTUALENV}/bin/python \
             ./st2api/bin/st2api \
@@ -266,7 +266,7 @@ function st2start(){
         echo '  using gunicorn to run st2-stream'
         export ST2_CONFIG_PATH=${ST2_CONF}
         screen -L -c tools/screen-configs/st2stream.conf -d -m -S st2-stream ${VIRTUALENV}/bin/gunicorn \
-            st2stream.wsgi:application -k eventlet -b "$BINDING_ADDRESS:9102" --workers 1
+            st2stream.wsgi:application -k eventlet -b "$BINDING_ADDRESS:9102" --workers 1 --timeout 90
     else
         screen -L -c tools/screen-configs/st2stream.conf -d -m -S st2-stream ${VIRTUALENV}/bin/python \
             ./st2stream/bin/st2stream \
@@ -354,7 +354,7 @@ function st2start(){
         echo '  using gunicorn to run st2-auth...'
         export ST2_CONFIG_PATH=${ST2_CONF}
         screen -L -c tools/screen-configs/st2auth.conf -d -m -S st2-auth ${VIRTUALENV}/bin/gunicorn \
-            st2auth.wsgi:application -k eventlet -b "$BINDING_ADDRESS:9100" --workers 1
+            st2auth.wsgi:application -k eventlet -b "$BINDING_ADDRESS:9100" --workers 1 --timeout 90
     else
         screen -L -c tools/screen-configs/st2auth.conf -d -m -S st2-auth ${VIRTUALENV}/bin/python \
             ./st2auth/bin/st2auth \

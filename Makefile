@@ -395,7 +395,7 @@ compilepy3:
 	@sudo pkill -9 mongod
 	@sudo rm -rf /var/lib/mongodb/*
 	@sudo chown -R mongodb:mongodb /var/lib/mongodb/
-	@sudo service mongodb start
+	@sudo service mongod start
 	@sleep 15
 	@mongo --eval "rs.initiate()"
 	@sleep 15
