@@ -111,9 +111,9 @@ class ActionExecutionSchedulingQueueHandler(object):
             execution_queue_item_db.handling = False
 
             try:
-                ActionExecutionSchedulingQueue.add_or_update(execution_queue_item_db, publish=False)
+                #ActionExecutionSchedulingQueue.add_or_update(execution_queue_item_db, publish=False)
                 LOG.info(
-                    '[%s] Removing lock for orphaned execution queue item "%s".',
+                    '[%s] Disabled Removing lock for orphaned execution queue item "%s".',
                     execution_queue_item_db.action_execution_id,
                     str(execution_queue_item_db.id)
                 )
