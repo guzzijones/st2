@@ -63,7 +63,7 @@ class ActionExecutionSchedulingQueueHandler(object):
         self._pool = eventlet.GreenPool(size=cfg.CONF.scheduler.pool_size)
         self._execution_scheduling_timeout_threshold_min = \
                 cfg.CONF.scheduler.execution_scheduling_timeout_threshold_min \
-                * 60 * 100
+                * 60 * 1000
         self._coordinator = coordination_service.get_coordinator(start_heart=True)
         self._main_thread = None
         self._cleanup_thread = None
