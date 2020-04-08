@@ -61,7 +61,7 @@ class ActionExecutionSchedulingQueueHandler(object):
         self.message_type = LiveActionDB
         self._shutdown = False
         self._pool = eventlet.GreenPool(size=cfg.CONF.scheduler.pool_size)
-        self._execution_scheduling_timeout_threshold_ms = \
+        self._execution_scheduling_timeout_threshold_min = \
                 cfg.CONF.scheduler.execution_scheduling_timeout_threshold_min \
                 * 60 * 100
         self._coordinator = coordination_service.get_coordinator(start_heart=True)
@@ -102,7 +102,7 @@ class ActionExecutionSchedulingQueueHandler(object):
         query = {
             'scheduled_start_timestamp__lte': date.append_milliseconds_to_time(
                 date.get_datetime_utc_now(),
-                -self.execution_scheduling_timeout_threshold_ms
+                -self._execution_scheduling_timeout_threshold_min
             ),
             'handling': True
         }
