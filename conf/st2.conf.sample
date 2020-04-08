@@ -278,7 +278,7 @@ retry_wait_msec = 3000
 # How often (in seconds) to look for zombie execution requests before rescheduling them.
 gc_interval = 10
 # Number of minutes after which a execution schedule will be rescheduled
-execution_scheduling_timeout_threshold_m = 60
+execution_scheduling_timeout_threshold_min = 10
 
 [schema]
 # Version of JSON schema to use.
