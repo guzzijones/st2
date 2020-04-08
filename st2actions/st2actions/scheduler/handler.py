@@ -50,7 +50,6 @@ LOG = logging.getLogger(__name__)
 # (< 5 seconds). If an item is still being marked as processing it likely indicates that the
 # scheduler process which was processing that item crashed or similar so we need to mark it as
 # "handling=False" so some other scheduler process can pick it up.
-EXECUTION_SCHEDUELING_TIMEOUT_THRESHOLD_MIN = (60 * 1000)
 
 # When a policy delayed execution is detected it will be try to be rescheduled by the scheduler
 # again in this amount of milliseconds.
@@ -63,8 +62,8 @@ class ActionExecutionSchedulingQueueHandler(object):
         self._shutdown = False
         self._pool = eventlet.GreenPool(size=cfg.CONF.scheduler.pool_size)
         self._execution_scheduling_timeout_threshold_ms = \
-                cfg.CONF.scheduler.execution_scheduling_timeout_threshold_m * \
-                EXECUTION_SCHEDUELING_TIMEOUT_THRESHOLD_MIN
+                cfg.CONF.scheduler.execution_scheduling_timeout_threshold_min \
+                * 60 * 100
         self._coordinator = coordination_service.get_coordinator(start_heart=True)
         self._main_thread = None
         self._cleanup_thread = None

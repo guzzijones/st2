@@ -51,7 +51,7 @@ def _register_service_opts():
             help='Location of the logging configuration file.'
         ),
         cfg.IntOpt(
-            'execution_scheduling_timeout_threshold_m', default=5,
+            'execution_scheduling_timeout_threshold_min', default=5,
             help='How long GC to search back in minutes for orphaned scheduled actions'),
         cfg.IntOpt(
             'pool_size', default=10,
